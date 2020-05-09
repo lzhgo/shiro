@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saki.sakimgrserver.mapper.UserInfoMapper">
+    <select id="selectUserInfoReList"
+            resultType="com.saki.sakimgrserver.domain.vo.UserVO">
+        select *
+        from user_info ui
+        <where>
+            <if test="uiAccount!=null">
+                and ui.ui_account = #{uiAccount}
+            </if>
+            <if test="uiPwd!=null">
+                and ui.ui_pwd = #{uiPwd}
+            </if>
+        </where>
+    </select>
+</mapper>

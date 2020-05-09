@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saki.sakimgrserver.mapper.RoleMapper">
+    <select id="selectRole"
+            resultType="map">
+        SELECT *
+        FROM user_info_role_group uirg
+        LEFT JOIN user_info_role uir
+        ON uir.`uir_id` = uirg.`uirg_uir_id`
+        <where>
+            <if test="uiId!=null">
+                and uirg.uirg_ui_id = #{uiId}
+            </if>
+        </where>
+    </select>
+    <select id="selectPerms"
+            resultType="map">
+        SELECT *
+        FROM user_info_role_permission_group uirpg
+        LEFT JOIN user_info_role_permission uirp
+        ON uirp.`uirp_id` = uirpg.uirpg_uirp_id
+        <where>
+            <if test="uiId!=null">
+                and uirpg.uirpg_ui_id = #{uiId}
+            </if>
+        </where>
+    </select>
+</mapper>
